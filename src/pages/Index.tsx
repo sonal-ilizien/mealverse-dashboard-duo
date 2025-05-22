@@ -14,11 +14,12 @@ const Index = () => {
     <DashboardLayout>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/dishes" element={<Dishes />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/earnings" element={<Earnings />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/dishes" element={<Dishes />} />
+        <Route path="/dashboard/orders" element={<Orders />} />
+        <Route path="/dashboard/reviews" element={<Reviews />} />
+        <Route path="/dashboard/earnings" element={<Earnings />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
       </Routes>
     </DashboardLayout>
   );

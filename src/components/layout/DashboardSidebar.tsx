@@ -23,7 +23,7 @@ type SidebarLink = {
 
 const links: SidebarLink[] = [
   {
-    to: "/dashboard",
+    to: "/",
     label: "Dashboard",
     icon: PieChart,
   },
