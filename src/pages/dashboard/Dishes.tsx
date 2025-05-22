@@ -76,7 +76,7 @@ export default function Dishes() {
   const [dishes, setDishes] = useState(mockDishes);
   const [isAddDishOpen, setIsAddDishOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
 
   // Handle dish edit
   const handleEditDish = (id: string) => {
@@ -116,7 +116,7 @@ export default function Dishes() {
   // Filter dishes based on search term and category
   const filteredDishes = dishes.filter((dish) => {
     const matchesSearch = dish.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = categoryFilter ? dish.category === categoryFilter : true;
+    const matchesCategory = categoryFilter === "all" ? true : dish.category === categoryFilter;
     return matchesSearch && matchesCategory;
   });
 
@@ -149,7 +149,7 @@ export default function Dishes() {
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               <SelectItem value="Breakfast">Breakfast</SelectItem>
               <SelectItem value="Lunch">Lunch</SelectItem>
               <SelectItem value="Dinner">Dinner</SelectItem>
