@@ -4,7 +4,7 @@ import { OrderCard } from "@/components/dashboard/OrderCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Search, CalendarIcon } from "lucide-react";
+import { Search } from "lucide-react";
 import { 
   Dialog, 
   DialogContent, 
@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 // Mock order data
 const mockOrders = [
@@ -80,8 +82,8 @@ const mockOrders = [
 export default function Orders() {
   const [orders, setOrders] = useState(mockOrders);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
-  const [dateFilter, setDateFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [dateFilter, setDateFilter] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState<(typeof mockOrders)[0] | null>(null);
 
   // Handle status change
@@ -107,8 +109,8 @@ export default function Orders() {
   const filteredOrders = orders.filter((order) => {
     const matchesSearch = order.customer.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          order.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter ? order.status === statusFilter : true;
-    const matchesDate = dateFilter ? order.time.toLowerCase().includes(dateFilter.toLowerCase()) : true;
+    const matchesStatus = statusFilter !== "all" ? order.status === statusFilter : true;
+    const matchesDate = dateFilter !== "all" ? order.time.toLowerCase().includes(dateFilter.toLowerCase()) : true;
     return matchesSearch && matchesStatus && matchesDate;
   });
   
@@ -149,7 +151,7 @@ export default function Orders() {
               <SelectValue placeholder="All Statuses" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Statuses</SelectItem>
+              <SelectItem value="all">All Statuses</SelectItem>
               <SelectItem value="New">New</SelectItem>
               <SelectItem value="Cooking">Cooking</SelectItem>
               <SelectItem value="Ready">Ready</SelectItem>
@@ -162,7 +164,7 @@ export default function Orders() {
               <SelectValue placeholder="All Dates" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Dates</SelectItem>
+              <SelectItem value="all">All Dates</SelectItem>
               <SelectItem value="Today">Today</SelectItem>
               <SelectItem value="Yesterday">Yesterday</SelectItem>
               <SelectItem value="Last 7 days">Last 7 days</SelectItem>
@@ -243,7 +245,3 @@ export default function Orders() {
     </div>
   );
 }
-
-// Missing imports
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";

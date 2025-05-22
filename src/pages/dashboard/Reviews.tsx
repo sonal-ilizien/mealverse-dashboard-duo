@@ -76,7 +76,7 @@ const mockReviews = [
 export default function Reviews() {
   const [reviews, setReviews] = useState(mockReviews);
   const [searchTerm, setSearchTerm] = useState("");
-  const [ratingFilter, setRatingFilter] = useState("");
+  const [ratingFilter, setRatingFilter] = useState("all");
   
   // For reply dialog
   const [isReplyOpen, setIsReplyOpen] = useState(false);
@@ -117,7 +117,7 @@ export default function Reviews() {
     const matchesSearch = review.comment.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           review.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           review.dishName.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRating = ratingFilter ? review.rating === parseInt(ratingFilter) : true;
+    const matchesRating = ratingFilter !== "all" ? review.rating === parseInt(ratingFilter) : true;
     return matchesSearch && matchesRating;
   });
 
@@ -159,7 +159,7 @@ export default function Reviews() {
               <SelectValue placeholder="All Ratings" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Ratings</SelectItem>
+              <SelectItem value="all">All Ratings</SelectItem>
               <SelectItem value="5">5 Stars</SelectItem>
               <SelectItem value="4">4 Stars</SelectItem>
               <SelectItem value="3">3 Stars</SelectItem>
