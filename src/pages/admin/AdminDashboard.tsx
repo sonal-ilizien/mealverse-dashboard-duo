@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { StatCard } from "@/components/dashboard/StatCard";
@@ -12,28 +11,32 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           title="Total Cooks"
-          value={{ value: 245, isPositive: true }}
+          value={245}
+          isPositive={true}
           change="+12% from last month"
           icon={<ChefHat className="h-8 w-8 text-blue-500" />}
         />
         
         <StatCard
           title="Active Users"
-          value={{ value: 1248, isPositive: true }}
+          value={1248}
+          isPositive={true}
           change="+8% from last month"
           icon={<Users className="h-8 w-8 text-green-500" />}
         />
         
         <StatCard
           title="Total Meals"
-          value={{ value: 3542, isPositive: true }}
+          value={3542}
+          isPositive={true}
           change="+15% from last month"
           icon={<Utensils className="h-8 w-8 text-orange-500" />}
         />
         
         <StatCard
           title="Open Reports"
-          value={{ value: 24, isPositive: false }}
+          value={24}
+          isPositive={false}
           change="+5% from last month"
           icon={<Flag className="h-8 w-8 text-red-500" />}
         />
